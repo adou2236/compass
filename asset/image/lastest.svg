@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2 {
+        clip-rule: evenodd;
+      }
+
+      .cls-2, .cls-6 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-4 {
+        fill: rgba(215,215,215,0);
+      }
+
+      .cls-5 {
+        clip-path: url(#clip-path-2);
+      }
+    </style>
+    <clipPath id="clip-path">
+      <path id="路径_14" data-name="路径 14" class="cls-1" d="M0-16H16V0H0Z"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="路径_16" data-name="路径 16" class="cls-2" d="M12.981-2H2.015A1.074,1.074,0,0,1,1-3.122v-4.6H14v4.6A1.074,1.074,0,0,1,12.981-2ZM1-11.4a.989.989,0,0,1,.269-.728.871.871,0,0,1,.69-.272H3.886l-.013-1.717a.844.844,0,0,1,.8-.883h5.657a.859.859,0,0,1,.8.883L11.11-12.4h1.926a.873.873,0,0,1,.692.271A.992.992,0,0,1,14-11.4v2.12H1Zm3.848-1h5.3v-1.56h-5.3Z" transform="translate(0)"/>
+    </clipPath>
+  </defs>
+  <g id="行业库" transform="translate(0 16)">
+    <g id="组_5623" data-name="组 5623" class="cls-3">
+      <path id="路径_13" data-name="路径 13" class="cls-4" d="M-5,5H21V-21H-5Z"/>
+    </g>
+    <g id="组_5624" data-name="组 5624" class="cls-5" transform="translate(0.5 0.5)">
+      <path id="路径_15" data-name="路径 15" class="cls-6" d="M-4,2.286H18.286V-20H-4Z" transform="translate(0.357 0.357)"/>
+    </g>
+  </g>
+</svg>
