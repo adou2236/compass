@@ -16,19 +16,11 @@ export default class AllTypes extends Component {
   }
   static navigationOptions = {
     tabBarLabel: '分类',
-    tabBarIcon: ({focused}) => {
-      if (focused) {
-        return (
-          <Image
-            style={styles.tabBarIcon}
-            source={require('../../../asset/image/types.svg')}
-          />
-        );
-      }
+    tabBarIcon: ({focused, horizontal, tintColor}) => {
       return (
         <Image
-          style={styles.tabBarIcon}
-          source={require('../../../asset/image/types.svg')}
+          source={require('../../../asset/image/icons/types.png')}
+          style={{width: 25, height: 25, tintColor: tintColor}}
         />
       );
     },
@@ -45,7 +37,6 @@ export default class AllTypes extends Component {
       .catch((error) => {
         console.log(error);
       });
-    console.log(this.state.allList);
   }
 
   render() {

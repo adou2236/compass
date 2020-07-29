@@ -10,6 +10,8 @@ import {
 } from 'react-native-ui-lib';
 import renderRow from './components/mayVideo';
 
+import {getVideosWithCondition} from '../../../asset/fn/publicFun';
+
 let MainWidth = Dimensions.get('window').width;
 
 //视频列表页
@@ -21,27 +23,41 @@ export default class videosList extends Component {
     super(props);
 
     this.state = {
-      videos: [
-        {id: '0', name: 'transmormer2'},
-        {id: '1', name: 'harrypoter2'},
-        {id: '2', name: 'matraxio'},
-        {id: '3', name: 'transmormer2'},
-        {id: '4', name: 'transmormer3'},
-      ],
+      videos: [],
     };
   }
-  goToDetials = (id) => {
-    console.log(this.props);
-    this.props.navigation.navigate('videoDetails', {id: id});
+  componentDidMount() {
+    console.log(this.props.navigation.state.params.data._id);
+    this.getVideos({
+      type: this.props.navigation.state.params.data._id,
+    });
+  }
+  getVideos(index) {
+    getVideosWithCondition(index)
+      .then((res) => {
+        if (res.data.status === 200) {
+          this.setState({
+            videos: res.data.data.data,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  goToDetials = (id, name) => {
+    this.props.navigation.navigate('videoDetails', {id: id, name: name});
   };
-  keyExtractor = (item) => item.id;
+  keyExtractor = (item) => item.list._id;
 
   render() {
     return (
       <FlatList
         contentContainerStyle={styles.MainBox}
         data={this.state.videos}
-        renderItem={({item, index}) => renderRow(item, index, this.goToDetials)}
+        renderItem={({item, index}) =>
+          renderRow(item.list, index, this.goToDetials)
+        }
         keyExtractor={this.keyExtractor}
       />
     );

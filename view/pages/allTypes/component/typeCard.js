@@ -19,7 +19,12 @@ export default class TypeCard extends Component {
         borderRadius={0}
         padding-0
         enableShadow={false}
-        style={{borderColor: 'gray', borderWidth: 1}}
+        style={{
+          borderColor: '#c1c1c1',
+          borderWidth: 1,
+          borderLeftWidth: 0,
+          borderTopWidth: 0,
+        }}
         useNative
         onPress={() => {
           this.props.navigation.navigate('videosList', {data: this.props.data});

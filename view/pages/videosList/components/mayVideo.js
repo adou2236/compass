@@ -10,22 +10,25 @@ import {
   Image,
   ListItem,
 } from 'react-native-ui-lib';
+
+import {formateDate} from '../../../../asset/fn/publicFun';
+
 let MainWidth = Dimensions.get('window').width;
 
 //视频列表，此处使用方法组件，不做状态处理，需要从上一步继承路由表
 export default function renderRow(row, index, callBack) {
-  function goToDetails(id) {
-    callBack(id);
+  function goToDetails(id, name) {
+    callBack(id, name);
     // Alert.alert(`pressed on contact #${id}`);
   }
   const renderOverlayContent = (
     <View flex bottom={true}>
       <View style={styles.message} row centerV>
         <Text text70 white>
-          2020-10-10
+          {formateDate(row.updateTime)}
         </Text>
         <Text text70 white>
-          32:00
+          时长
         </Text>
       </View>
     </View>
@@ -35,17 +38,17 @@ export default function renderRow(row, index, callBack) {
     <AnimatableView {...animationProps}>
       <ListItem
         containerStyle={styles.MainBox}
-        key={row.id}
-        onPress={() => goToDetails(row.id)}>
+        key={row._id}
+        onPress={() => goToDetails(row._id, row.name)}>
         <ListItem.Part flex-1 style={styles.a} height={230}>
           <Image
             assetGroup={'暂无图片'}
             height={200}
             supportRTL={true}
-            source={smb}
+            source={{uri: row.cover}}
             cover={true}
             customOverlayContent={renderOverlayContent}
-            overlayType={'vertical'}
+            overlayType={'bottom'}
           />
           <Text text65T numberOfLines={1} style={styles.b}>
             {row.name}
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
     height: 230,
     marginTop: 10,
     marginBottom: 10,
-    width: MainWidth * 0.8,
+    width: MainWidth * 0.9,
     borderRadius: 15,
     overflow: 'hidden',
   },

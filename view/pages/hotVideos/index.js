@@ -1,45 +1,71 @@
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import {Text, View, Image} from 'react-native-ui-lib';
+import {getVideosWithCondition} from '../../../asset/fn/publicFun';
+import renderRow from '../videosList/components/mayVideo';
 
-export default class HotVideos extends Component {
+export default class LastVideos extends Component {
   static navigationOptions = {
     tabBarLabel: '热门',
-    //简单的png图标能够与文字颜色一致
-    //tabBarIcon: ({focused, horizontal, tintColor}) => {
-    //             return <Image
-    //                 source={require('./image/homeH.png')}
-    //                 style={{width: 22, height: 22, tintColor: tintColor}}
-    //             />
-    //         },
-    title: '热门',
-    tabBarIcon: ({focused}) => {
-      if (focused) {
-        return (
-          <Image
-            style={styles.tabBarIcon}
-            source={require('../../../asset/image/user.png')}
-          />
-        );
-      }
+    tabBarIcon: ({focused, horizontal, tintColor}) => {
       return (
         <Image
-          style={styles.tabBarIcon}
-          source={require('../../../asset/image/user.png')}
+          source={require('../../../asset/image/icons/good.png')}
+          style={{width: 25, height: 25, tintColor: tintColor}}
         />
       );
     },
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      videos: [],
+    };
+  }
+
+  componentDidMount() {
+    this.getVideos({sort: 'list.star', order: -1, pageNumber: 3});
+  }
+
+  getVideos(index) {
+    getVideosWithCondition(index)
+      .then((res) => {
+        if (res.data.status === 200) {
+          this.setState({
+            videos: res.data.data.data,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  goToDetials = (id, name) => {
+    this.props.navigation.navigate('videoDetails', {id: id, name: name});
+  };
+  keyExtractor = (item) => item.list._id;
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>这是热门</Text>
-      </View>
+      <FlatList
+        contentContainerStyle={styles.MainBox}
+        data={this.state.videos}
+        renderItem={({item, index}) =>
+          renderRow(item.list, index, this.goToDetials)
+        }
+        keyExtractor={this.keyExtractor}
+      />
     );
   }
 }
+
 const styles = StyleSheet.create({
+  MainBox: {
+    display: 'flex',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     flexDirection: 'column',

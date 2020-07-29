@@ -4,7 +4,7 @@ import {Image} from 'react-native-ui-lib';
 
 export default class videoDetails extends Component {
   static navigationOptions = ({navigation}) => ({
-    title: `${navigation.state.params.id}`,
+    title: `${navigation.state.params.name}`,
   });
   constructor(props) {
     super(props);
