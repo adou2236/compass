@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {View, Text} from 'react-native'
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
 
@@ -11,6 +12,8 @@ import FindAccount from './findAccountPage';
 import Signin from './regPage';
 import videosList from './pages/videosList';
 import videoDetails from './pages/videoDetails';
+import {Button, Image} from 'react-native-ui-lib';
+const settingIcon = require('../asset/image/icons/setting.png');
 const TabNavigation = createBottomTabNavigator(
   {
     Hot: {
@@ -26,6 +29,11 @@ const TabNavigation = createBottomTabNavigator(
   {
     //默认首页
     initialRouteName: 'Hot',
+    navigationOptions: {
+      headerRight: <Button iconSource={settingIcon}
+                           iconStyle={{width:30,height:30}}
+                           size={Button.sizes.xSmall} />,
+    },
     tabBarOptions: {
       lazy: true,
       swipeEnabled: true,

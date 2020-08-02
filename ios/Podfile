@@ -8,6 +8,9 @@ target 'compass' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+
+
+
   target 'compassTests' do
     inherit! :complete
     # Pods for testing
