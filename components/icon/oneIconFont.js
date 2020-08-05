@@ -46,6 +46,16 @@ const glyphMap = {
   download_o: 58901,
   share_dot_o: 58915,
   ex_mark_o: 58897,
+  setting: 58994,
+  clockcircleo: 58945,
+  book: 58935,
+  star: 58976,
+  staro: 58977,
+  bars: 58937,
+  home: 58975,
+  search: 58978,
+  menu_close: 58968,
+  menu_open: 59001,
 };
 
 const OIcon = createIconSet(glyphMap, 'iconfont', 'iconfont.ttf');

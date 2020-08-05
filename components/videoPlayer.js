@@ -14,7 +14,7 @@ import {
 import Slider from '@react-native-community/slider';
 import Video from 'react-native-video';
 import Orientation from 'react-native-orientation';
-import {commonStyle} from './commonStyle';
+const commonStyle = require('./commonStyle');
 import {Icon} from './icon';
 // import {Slider} from 'react-native-ui-lib';
 

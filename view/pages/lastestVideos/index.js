@@ -3,6 +3,8 @@ import {FlatList, StyleSheet} from 'react-native';
 import {Text, View, Image} from 'react-native-ui-lib';
 import renderRow from '../videosList/components/mayVideo';
 import {getVideosWithCondition} from '../../../asset/fn/publicFun';
+import {Icon} from '../../../components/icon';
+const commonStyle = require('../../../components/commonStyle');
 
 //子组件
 // import TypeCard from '../allTypes/component/typeCard';
@@ -12,9 +14,10 @@ export default class LastVideos extends Component {
     tabBarLabel: '最新',
     tabBarIcon: ({focused, horizontal, tintColor}) => {
       return (
-        <Image
-          source={require('../../../asset/image/icons/lastest.png')}
-          style={{width: 25, height: 25, tintColor: tintColor}}
+        <Icon
+          name={'oneIcon|clockcircleo'}
+          size={focused ? 30 : 25}
+          color={focused ? commonStyle.white : commonStyle.lightGray}
         />
       );
     },

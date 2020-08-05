@@ -1,8 +1,9 @@
 import React from 'react';
 
-import {View, Text} from 'react-native'
+import {View, Text, TouchableOpacity} from 'react-native';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
+import {createDrawerNavigator} from 'react-navigation-drawer';
 
 import HotVideos from './pages/hotVideos/index';
 import LastVideos from './pages/lastestVideos/index';
@@ -12,8 +13,14 @@ import FindAccount from './findAccountPage';
 import Signin from './regPage';
 import videosList from './pages/videosList';
 import videoDetails from './pages/videoDetails';
+import userConfig from './userConfig';
 import {Button, Image} from 'react-native-ui-lib';
-const settingIcon = require('../asset/image/icons/setting.png');
+const commonStyle = require('../components/commonStyle');
+
+import RightButton from '../components/rightButton';
+import LeftButton from '../components/leftButton';
+import CustomDrawerContentComponent from './pages/myDrawer';
+
 const TabNavigation = createBottomTabNavigator(
   {
     Hot: {
@@ -29,19 +36,25 @@ const TabNavigation = createBottomTabNavigator(
   {
     //默认首页
     initialRouteName: 'Hot',
-    navigationOptions: {
-      headerRight: <Button iconSource={settingIcon}
-                           iconStyle={{width:30,height:30}}
-                           size={Button.sizes.xSmall} />,
+    navigationOptions: ({navigation}) => {
+      return {
+        headerTitleStyle: {
+          alignSelf: 'center',
+          color: commonStyle.white,
+        },
+        headerLeft: () => <LeftButton navigation={navigation} />,
+        headerRight: () => <RightButton />,
+      };
     },
+
     tabBarOptions: {
       lazy: true,
       swipeEnabled: true,
       headerRight: {},
       //当前选中的tab bar的文本颜色和图标颜色
-      activeTintColor: '#d24b66',
+      activeTintColor: '#FFFFFF',
       //当前未选中的tab bar的文本颜色和图标颜色
-      inactiveTintColor: '#000000',
+      inactiveTintColor: '#FFFFFF',
       //是否显示tab bar的图标，默认是false
       showIcon: true,
       //showLabel - 是否显示tab bar的文本，默认是true
@@ -54,7 +67,7 @@ const TabNavigation = createBottomTabNavigator(
       pressOpacity: 0.1,
       //tab bar的样式
       style: {
-        backgroundColor: '#ffffff',
+        backgroundColor: commonStyle.themeColor,
         paddingBottom: 1,
         borderTopWidth: 1,
         paddingTop: 1,
@@ -81,19 +94,111 @@ const TabNavigation = createBottomTabNavigator(
 
 const APPNavigator = createStackNavigator(
   {
-    Login: {screen: Login}, // 登录页
-    Signin: {screen: Signin}, // 注册页
-    FindAccount: {screen: FindAccount}, // 找回密码页
-    videosList: {screen: videosList},
-    videoDetails: {screen: videoDetails},
+    Login: {
+      screen: Login,
+      navigationOptions: {
+        headerStyle: {
+          headerTitleStyle: {
+            alignSelf: 'center',
+            color: commonStyle.white,
+          },
+          backgroundColor: commonStyle.themeColor,
+        },
+      },
+    }, // 登录页
+    Signin: {
+      screen: Signin,
+      navigationOptions: {
+        headerStyle: {
+          headerTitleStyle: {
+            alignSelf: 'center',
+            color: commonStyle.white,
+          },
+          backgroundColor: commonStyle.themeColor,
+        },
+      },
+    }, // 注册页
+    FindAccount: {
+      screen: FindAccount,
+      navigationOptions: {
+        headerStyle: {
+          headerTitleStyle: {
+            alignSelf: 'center',
+            color: commonStyle.white,
+          },
+          backgroundColor: commonStyle.themeColor,
+        },
+      },
+    }, // 找回密码页
+    videosList: {
+      screen: videosList,
+      navigationOptions: {
+        headerStyle: {
+          headerTitleStyle: {
+            alignSelf: 'center',
+            color: commonStyle.white,
+          },
+          backgroundColor: commonStyle.themeColor,
+        },
+      },
+    },
+    videoDetails: {
+      screen: videoDetails,
+      navigationOptions: {
+        headerStyle: {
+          headerTitleStyle: {
+            alignSelf: 'center',
+            color: commonStyle.white,
+          },
+          backgroundColor: commonStyle.themeColor,
+        },
+      },
+    },
+    userConfig: {
+      screen: userConfig,
+      navigationOptions: {
+        headerStyle: {
+          headerTitleStyle: {
+            alignSelf: 'center',
+            color: commonStyle.white,
+          },
+          backgroundColor: commonStyle.themeColor,
+        },
+      },
+    },
     Main: {
       screen: TabNavigation,
+      navigationOptions: {
+        headerStyle: {
+          headerTitleStyle: {
+            alignSelf: 'center',
+            color: commonStyle.white,
+          },
+          backgroundColor: commonStyle.themeColor,
+        },
+      },
     },
   },
   {
-    initialRouteName: 'Main',
+    initialRouteName: 'Login',
     headerMode: 'screen',
   },
 );
 
-export default APPNavigator;
+const Drawer = createDrawerNavigator(
+  {
+    Main: {
+      screen: APPNavigator,
+    },
+  },
+  {
+    overlayColor: 1,
+    drawerType: 'slide', //front,back
+    initialRouteName: 'Main',
+    drawerPosition: 'left', // 抽屉在左边还是右边
+    contentComponent: CustomDrawerContentComponent, // 自定义抽屉组件
+    hideStatusBar: true,
+  },
+);
+
+export default Drawer;

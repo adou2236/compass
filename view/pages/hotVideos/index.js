@@ -3,15 +3,18 @@ import {FlatList, StyleSheet} from 'react-native';
 import {Text, View, Image} from 'react-native-ui-lib';
 import {getVideosWithCondition} from '../../../asset/fn/publicFun';
 import renderRow from '../videosList/components/mayVideo';
+const commonStyle = require('../../../components/commonStyle');
+import {Icon} from '../../../components/icon';
 
 export default class LastVideos extends Component {
   static navigationOptions = {
     tabBarLabel: '热门',
     tabBarIcon: ({focused, horizontal, tintColor}) => {
       return (
-        <Image
-          source={require('../../../asset/image/icons/good.png')}
-          style={{width: 25, height: 25, tintColor: tintColor}}
+        <Icon
+          name={'oneIcon|home'}
+          size={focused ? 30 : 25}
+          color={focused ? commonStyle.white : commonStyle.lightGray}
         />
       );
     },

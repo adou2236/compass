@@ -6,7 +6,8 @@ import {View as AnimatableView} from 'react-native-animatable';
 
 //接口请求
 import {getAllTypes} from '../../../api/apis/videosApi';
-
+import {Icon} from '../../../components/icon';
+const commonStyle = require('../../../components/commonStyle');
 export default class AllTypes extends Component {
   constructor() {
     super();
@@ -18,9 +19,10 @@ export default class AllTypes extends Component {
     tabBarLabel: '分类',
     tabBarIcon: ({focused, horizontal, tintColor}) => {
       return (
-        <Image
-          source={require('../../../asset/image/icons/types.png')}
-          style={{width: 25, height: 25, tintColor: tintColor}}
+        <Icon
+          name={'oneIcon|bars'}
+          size={focused ? 30 : 25}
+          color={focused ? commonStyle.white : commonStyle.lightGray}
         />
       );
     },

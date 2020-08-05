@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {ActivityIndicator} from 'react-native';
 import {TabController, Colors, View, Text, Button} from 'react-native-ui-lib'; //eslint-disable-line
 import _ from 'lodash';
-import {commonStyle} from '../../../../components/commonStyle';
+const commonStyle = require('../../../../components/commonStyle');
 
 import Tab1 from '../pages/introductPage';
 import Tab2 from '../pages/commentPage';

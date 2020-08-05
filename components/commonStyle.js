@@ -5,7 +5,7 @@
 /** 公共样式表 **/
 
 import {Platform} from 'react-native';
-export const commonStyle = {
+const commonStyle = {
   /** color **/
   // 常用颜色
   red: '#FF0000',
@@ -25,7 +25,7 @@ export const commonStyle = {
   clear: 'transparent',
 
   /** 主题色 **/
-  themeColor: '#e74c3c',
+  themeColor: '#66737C',
   // 默认灰色字体颜色
   textGrayColor: '#989898',
   // 默认黑色字体颜色
@@ -119,3 +119,5 @@ export const commonStyle = {
   center: 'center',
   row: 'row',
 };
+
+module.exports = commonStyle;
