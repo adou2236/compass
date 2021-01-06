@@ -16,7 +16,7 @@
     "@react-native-community/netinfo": "^5.9.5",
     "@react-native-community/picker": "^1.6.5",
     "@react-native-community/slider": "^3.0.3",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "http-proxy-middleware": "^1.0.5",
     "lodash": "^4.17.19",
     "react": "16.13.1",
